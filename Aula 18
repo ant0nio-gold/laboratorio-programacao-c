@@ -1,1 +1,211 @@
+1.Calculadora
+
+#include <stdio.h>
+
+void exibirMenu() {
+    printf("\n===== CALCULADORA =====\n");
+    printf("1 - Somar\n");
+    printf("2 - Subtrair\n");
+    printf("3 - Multiplicar\n");
+    printf("4 - Dividir\n");
+    printf("0 - Sair\n");
+    printf("Escolha uma opcao: ");
+}
+
+float somar(float a, float b) {
+    return a + b;
+}
+
+float subtrair(float a, float b) {
+    return a - b;
+}
+
+float multiplicar(float a, float b) {
+    return a * b;
+}
+
+float dividir(float a, float b) {
+    return a / b;
+}
+
+int main() {
+    int opcao;
+    float n1, n2;
+
+    do {
+        exibirMenu();
+        scanf("%d", &opcao);
+
+        if (opcao >= 1 && opcao <= 4) {
+            printf("Digite o primeiro numero: ");
+            scanf("%f", &n1);
+            printf("Digite o segundo numero: ");
+            scanf("%f", &n2);
+        }
+
+        switch (opcao) {
+            case 1:
+                printf("Resultado: %.2f\n", somar(n1, n2));
+                break;
+            case 2:
+                printf("Resultado: %.2f\n", subtrair(n1, n2));
+                break;
+            case 3:
+                printf("Resultado: %.2f\n", multiplicar(n1, n2));
+                break;
+            case 4:
+                if (n2 == 0) {
+                    printf("Erro: nao e possivel dividir por zero!\n");
+                } else {
+                    printf("Resultado: %.2f\n", dividir(n1, n2));
+                }
+                break;
+            case 0:
+                printf("Encerrando o programa...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
+
+
+
+
+2.comparar preços
+
+
+#include <stdio.h>
+
+float maiorPreco(float p1, float p2) {
+    if (p1 > p2) {
+        return p1;
+    }
+    return p2;
+}
+
+int main() {
+    float preco1, preco2;
+
+    printf("Digite o preco do primeiro produto: ");
+    scanf("%f", &preco1);
+
+    printf("Digite o preco do segundo produto: ");
+    scanf("%f", &preco2);
+
+    if (preco1 == preco2) {
+        printf("Os precos sao iguais: R$ %.2f\n", preco1);
+    } else {
+        printf("O maior preco e: R$ %.2f\n", maiorPreco(preco1, preco2));
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+3. Par ou Impar?
+
+#include <stdio.h>
+
+int verificarPar(int numero) {
+    if (numero % 2 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+int main() {
+    int numero;
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    if (verificarPar(numero) == 1) {
+        printf("O numero %d e par.\n", numero);
+    } else {
+        printf("O numero %d e impar.\n", numero);
+    }
+
+    return 0;
+}
+
+4.DOBRO
+
+#include <stdio.h>
+
+int dobro(int quantidade) {
+    return quantidade * 2;
+}
+
+int main() {
+    int inicial, final;
+
+    printf("Digite a quantidade inicial de produtos: ");
+    scanf("%d", &inicial);
+
+    final = dobro(inicial);
+
+    printf("Quantidade inicial: %d\n", inicial);
+    printf("Quantidade final (dobro): %d\n", final);
+
+    return 0;
+}
+
+5.SEPARADORES
+
+#include <stdio.h>
+
+void exibirLinha() {
+    printf("**********\n");
+}
+
+int main() {
+    exibirLinha();
+    printf("RELATORIO MENSAL\n");
+    exibirLinha();
+
+    return 0;
+}
+
+
+
+
+6.  Fatorial
+
+#include <stdio.h>
+
+int calcularFatorial(int n) {
+    int resultado = 1;
+    int i;
+
+    for (i = 2; i <= n; i++) {
+        resultado = resultado * i;
+    }
+
+    return resultado;
+}
+
+int main() {
+    int numero;
+
+    printf("Digite um numero entre 0 e 12: ");
+    scanf("%d", &numero);
+
+    if (numero < 0 || numero > 12) {
+        printf("Numero fora do intervalo permitido!\n");
+        return 1;
+    }
+
+    printf("O fatorial de %d e %d\n", numero, calcularFatorial(numero));
+
+    return 0;
+}
+
+
 
