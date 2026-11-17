@@ -1,0 +1,209 @@
+EXERCICIO 1
+
+#include <stdio.h>
+
+int main() {
+    FILE *arquivo;
+    char nome[50];
+    int matricula;
+    int i;
+
+    arquivo = fopen("funcionarios.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
+    for (i = 0; i < 5; i++) {
+        printf("\nFuncionario %d\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%49s", nome);
+
+        printf("Matricula: ");
+        scanf("%d", &matricula);
+
+        fprintf(arquivo, "%s %d\n", nome, matricula);
+    }
+
+    fclose(arquivo);
+
+    printf("\nDados gravados com sucesso em funcionarios.txt!\n");
+
+    return 0;
+
+EXERCICIO 2
+
+
+
+#include <stdio.h>
+
+int main() {
+    FILE *arquivo;
+    int numero;
+    int i;
+
+    arquivo = fopen("numeros.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para escrita!\n");
+        return 1;
+    }
+
+    for (i = 0; i < 5; i++) {
+        printf("Digite o numero %d: ", i + 1);
+        scanf("%d", &numero);
+
+        fprintf(arquivo, "%d\n", numero);
+    }
+
+    fclose(arquivo);
+
+    arquivo = fopen("numeros.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para leitura!\n");
+        return 1;
+    }
+
+    printf("\nNumeros armazenados no arquivo:\n");
+
+    while (fscanf(arquivo, "%d", &numero) == 1) {
+        printf("%d\n", numero);
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
+
+
+EXERCICIO 3
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[50];
+    float salario;
+    int horasExtras;
+} Funcionario;
+
+void lerTexto(char *destino, int tamanho) {
+    fgets(destino, tamanho, stdin);
+    destino[strcspn(destino, "\n")] = '\0';
+}
+
+int lerInt() {
+    char linha[50];
+    int valor;
+
+    while (1) {
+        fgets(linha, sizeof(linha), stdin);
+        if (sscanf(linha, "%d", &valor) == 1) {
+            return valor;
+        }
+        printf("Valor invalido! Digite um numero inteiro: ");
+    }
+}
+
+float lerFloat() {
+    char linha[50];
+    float valor;
+    int i;
+
+    while (1) {
+        fgets(linha, sizeof(linha), stdin);
+
+        for (i = 0; linha[i] != '\0'; i++) {
+            if (linha[i] == ',') {
+                linha[i] = '.';
+            }
+        }
+
+        if (sscanf(linha, "%f", &valor) == 1) {
+            return valor;
+        }
+        printf("Valor invalido! Digite um numero: ");
+    }
+}
+
+void cadastrarFuncionarios() {
+    FILE *arquivo;
+    Funcionario f;
+    int quantidade, i;
+
+    printf("Quantos funcionarios deseja cadastrar (maximo 5)? ");
+    quantidade = lerInt();
+
+    if (quantidade < 1 || quantidade > 5) {
+        printf("Quantidade invalida!\n");
+        return;
+    }
+
+    arquivo = fopen("funcionarios.txt", "a");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return;
+    }
+
+    for (i = 0; i < quantidade; i++) {
+        printf("\nFuncionario %d\n", i + 1);
+
+        printf("Nome: ");
+        lerTexto(f.nome, sizeof(f.nome));
+
+        printf("Salario: ");
+        f.salario = lerFloat();
+
+        printf("Horas extras: ");
+        f.horasExtras = lerInt();
+
+        fprintf(arquivo, "%s;%.2f;%d\n", f.nome, f.salario, f.horasExtras);
+    }
+
+    fclose(arquivo);
+    printf("\nDados gravados com sucesso!\n");
+}
+
+void listarFuncionarios() {
+    FILE *arquivo;
+    Funcionario f;
+    char linha[150];
+    int encontrados = 0;
+
+    arquivo = fopen("funcionarios.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Nenhum funcionario cadastrado ainda.\n");
+        return;
+    }
+
+    printf("\n===== FUNCIONARIOS CADASTRADOS =====\n");
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        if (sscanf(linha, "%49[^;];%f;%d", f.nome, &f.salario, &f.horasExtras) == 3) {
+            printf("Nome: %s | Salario: R$ %.2f | Horas extras: %d\n",
+                   f.nome, f.salario, f.horasExtras);
+            encontrados++;
+        }
+    }
+
+    if (encontrados == 0) {
+        printf("Nenhum registro valido encontrado.\n");
+    }
+
+    fclose(arquivo);
+}
+
+int main() {
+    cadastrarFuncionarios();
+    listarFuncionarios();
+
+    return 0;
+}
