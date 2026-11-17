@@ -1,0 +1,140 @@
+1. 
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char produto[50];
+    char categoria[20];
+    char copia[50];
+    char descricao[100];
+
+    printf("Digite o nome do produto: ");
+    scanf("%49s", produto);
+
+    printf("Digite a categoria (HARDWARE ou PERIFERICO): ");
+    scanf("%19s", categoria);
+
+    /* Valida a categoria */
+    if (strcmp(categoria, "HARDWARE") != 0 && strcmp(categoria, "PERIFERICO") != 0) {
+        printf("Categoria invalida! Use HARDWARE ou PERIFERICO.\n");
+        return 1;
+    }
+
+    /* Copia o nome do produto para outra variavel */
+    strcpy(copia, produto);
+
+    /* Gera a descricao no formato "Produto: Nome" */
+    strcpy(descricao, "Produto: ");
+    strcat(descricao, produto);
+
+    printf("\n===== RESUMO DO CADASTRO =====\n");
+    printf("Produto: %s\n", produto);
+    printf("Quantidade de caracteres do nome: %zu\n", strlen(produto));
+    printf("Copia do nome: %s\n", copia);
+
+    if (strcmp(categoria, "HARDWARE") == 0) {
+        printf("Categoria: HARDWARE (componentes internos)\n");
+    } else {
+        printf("Categoria: PERIFERICO (dispositivos externos)\n");
+    }
+
+    printf("Descricao: %s\n", descricao);
+
+    return 0;
+}
+
+
+2. 
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char produto[50];
+    char categoria[20];
+    char copia[50];
+    char descricao[100];
+
+    printf("Digite o nome do produto: ");
+    scanf("%49s", produto);
+
+    printf("Digite a categoria (HARDWARE ou PERIFERICO): ");
+    scanf("%19s", categoria);
+
+    if (strcmp(categoria, "HARDWARE") != 0 && strcmp(categoria, "PERIFERICO") != 0) {
+        printf("Categoria invalida! Use HARDWARE ou PERIFERICO.\n");
+        return 1;
+    }
+
+    strcpy(copia, produto);
+
+    strcpy(descricao, "Produto: ");
+    strcat(descricao, produto);
+
+    printf("\n===== RESUMO DO CADASTRO =====\n");
+    printf("Produto: %s\n", produto);
+    printf("Quantidade de caracteres do nome: %zu\n", strlen(produto));
+    printf("Copia do nome: %s\n", copia);
+
+    if (strcmp(categoria, "HARDWARE") == 0) {
+        printf("Categoria: HARDWARE (componentes internos)\n");
+    } else {
+        printf("Categoria: PERIFERICO (dispositivos externos)\n");
+    }
+
+    printf("Descricao: %s\n", descricao);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+3.
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nome[50];
+    char codigo[10];
+    char copia[50];
+    char mensagem[100];
+
+    printf("Digite o primeiro nome do estudante: ");
+    scanf("%49s", nome);
+
+    printf("Digite o codigo do curso (CC ou SI): ");
+    scanf("%9s", codigo);
+
+    if (strcmp(codigo, "CC") != 0 && strcmp(codigo, "SI") != 0) {
+        printf("Codigo de curso invalido! Use CC ou SI.\n");
+        return 1;
+    }
+
+    strcpy(copia, nome);
+
+    strcpy(mensagem, "Ola, ");
+    strcat(mensagem, copia);
+    strcat(mensagem, "!");
+
+    printf("\n===== DADOS DO ESTUDANTE =====\n");
+    printf("Nome: %s\n", nome);
+    printf("Quantidade de caracteres do nome: %zu\n", strlen(nome));
+
+    if (strcmp(codigo, "CC") == 0) {
+        printf("Curso: Ciencia da Computacao\n");
+    } else {
+        printf("Curso: Sistemas de Informacao\n");
+    }
+
+    printf("Mensagem: %s\n", mensagem);
+
+    return 0;
+}
