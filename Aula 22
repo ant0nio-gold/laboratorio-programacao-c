@@ -1,0 +1,118 @@
+Questão 1 – Endereço de memória
+
+#include <stdio.h>
+
+int main(void) {
+    int numero;
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    printf("Valor: %d\n", numero);
+    printf("Endereco de memoria: %p\n", (void *)&numero);
+
+    return 0;
+}
+
+
+Questão 2 – Utilizando ponteiros
+
+#include <stdio.h>
+
+int main(void) {
+    int valor = 20;
+    int *ponteiro = &valor;
+
+    printf("Valor da variavel: %d\n", valor);
+    printf("Endereco da variavel: %p\n", (void *)&valor);
+    printf("Valor acessado pelo ponteiro: %d\n", *ponteiro);
+
+    return 0;
+}
+
+
+
+Questão 3 – Alteração de valores
+
+#include <stdio.h>
+
+int main(void) {
+    int numero = 15;
+    int *p = &numero;
+
+    printf("Valor antes: %d\n", numero);
+
+    *p = 50;
+
+    printf("Valor depois: %d\n", numero);
+
+    return 0;
+}
+
+
+
+Questão 4 – Ponteiros e funções
+
+
+#include <stdio.h>
+
+void dobrar(int *numero) {
+    *numero = *numero * 2;
+}
+
+int main(void) {
+    int valor;
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &valor);
+
+    dobrar(&valor);
+
+    printf("Resultado: %d\n", valor);
+
+    return 0;
+}
+
+
+
+Questão 5 – Ponteiros e vetores
+
+
+#include <stdio.h>
+
+int main(void) {
+    int numeros[5];
+    int *p = numeros;
+    int i;
+
+    for (i = 0; i < 5; i++) {
+        printf("Digite o numero %d: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
+
+    printf("\nElementos do vetor:\n");
+
+    for (i = 0; i < 5; i++) {
+        printf("Posicao %d: %d\n", i, *(p + i));
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
