@@ -1,0 +1,63 @@
+1. Cadastro funcionarios
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+#define TAM_NOME 50
+
+typedef struct {
+    char nome[TAM_NOME];
+    int idade;
+    float salario;
+} Funcionario;
+
+void lerFuncionario(Funcionario *f, int numero) {
+    printf("\n--- Dados do funcionario %d ---\n", numero);
+
+    printf("Nome: ");
+    fgets(f->nome, TAM_NOME, stdin);
+    f->nome[strcspn(f->nome, "\n")] = '\0';
+
+    printf("Idade: ");
+    scanf("%d", &f->idade);
+
+    printf("Salario: R$ ");
+    scanf("%f", &f->salario);
+
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void exibirFuncionario(Funcionario f, int numero) {
+    printf("\nFuncionario %d\n", numero);
+    printf("Nome: %s\n", f.nome);
+    printf("Idade: %d anos\n", f.idade);
+    printf("Salario: R$ %.2f\n", f.salario);
+}
+
+int main(void) {
+    Funcionario funcionario1, funcionario2;
+
+    lerFuncionario(&funcionario1, 1);
+    lerFuncionario(&funcionario2, 2);
+
+    printf("\n===== DADOS CADASTRADOS =====");
+    exibirFuncionario(funcionario1, 1);
+    exibirFuncionario(funcionario2, 2);
+
+    printf("\n===== RESULTADO =====\n");
+    if (funcionario1.salario > funcionario2.salario) {
+        printf("Maior salario: %s (R$ %.2f)\n", funcionario1.nome, funcionario1.salario);
+        printf("Diferenca salarial: R$ %.2f\n", funcionario1.salario - funcionario2.salario);
+    } else if (funcionario2.salario > funcionario1.salario) {
+        printf("Maior salario: %s (R$ %.2f)\n", funcionario2.nome, funcionario2.salario);
+        printf("Diferenca salarial: R$ %.2f\n", funcionario2.salario - funcionario1.salario);
+    } else {
+        printf("Os dois funcionarios recebem o mesmo salario: R$ %.2f\n", funcionario1.salario);
+    }
+
+    return 0;
+}
